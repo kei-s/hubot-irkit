@@ -148,7 +148,7 @@ module.exports = (robot) ->
   if /^(1|true)$/.test process.env.HUBOT_IRKIT_HTTP?.toString()
     method = process.env.HUBOT_IRKIT_HTTP_METHOD?.toUpperCase()
     unless /^(GET|POST|PUT|DELETE)$/.test method
-      robot.log.warn "Unknown HTTP method #{method}. Using GET." if method?
+      robot.logger.info "Unknown HTTP method #{method}. Using GET." if method?
       method = 'GET'
     robot.router[method.toLowerCase()] '/irkit/messages/:deviceName/:messageName', (httpReq, httpRes) ->
       { deviceName, messageName } = httpReq.params
